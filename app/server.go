@@ -37,8 +37,9 @@ func (server *Server) Initialize (appConfig AppConfig, dbConfig DBConfig){
 	fmt.Println( "welcome to "+ appConfig.AppName )
 
 	var err error
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Bogor", dbConfig.DBHost ,dbConfig.DBUser, dbConfig.DBPassword, dbConfig.DBName, dbConfig.DBPort)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Jakarta", dbConfig.DBHost ,dbConfig.DBUser, dbConfig.DBPassword, dbConfig.DBName, dbConfig.DBPort)
 	server.DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	// server.DB, err = gorm_postgres.Open(dsn), &gorm.Config{} //  Kode baru
 
 	if err != nil {
 		panic("Failed on conecting to the datahase")
@@ -76,7 +77,7 @@ func Run(){
 
 	dbConfig.DBHost = getEnv("DB_HOST", "localhost")
 dbConfig.DBUser = getEnv("DB_USER", "user")
-dbConfig.DBPassword = getEnv("DB_PASSWORD", "password")
+dbConfig.DBPassword = getEnv("DB_PASSWORD", "12345")
 dbConfig.DBName = getEnv("DB_NAME", "dbname")
 dbConfig.DBPort = getEnv("DB_PORT", "5432")
 
